@@ -32,6 +32,7 @@ Route::get('/clear-cache', function() {
   });
 
 Route::get('/',[HomeController::class,'index']);
+Route::get('/test',[HomeController::class,'test']);
 
 Route::get('admin/user/login',[LoginController::class,'index'])->name('login');
 

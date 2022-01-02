@@ -38,7 +38,7 @@
 									<div class="wrap-pic-w pos-relative">
 										<img src="{{URL::asset('storage/app/hinh_san_pham/'.$sp->hinh1)}}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-01.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{URL::asset('storage/app/hinh_san_pham/'.$sp->hinh1)}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -48,7 +48,7 @@
 									<div class="wrap-pic-w pos-relative">
 										<img src="{{URL::asset('storage/app/hinh_san_pham/'.$sp->hinh2)}}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-02.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{URL::asset('storage/app/hinh_san_pham/'.$sp->hinh2)}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>
@@ -58,7 +58,7 @@
 									<div class="wrap-pic-w pos-relative">
 										<img src="{{URL::asset('storage/app/hinh_san_pham/'.$sp->hinh3)}}" alt="IMG-PRODUCT">
 
-										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="images/product-detail-03.jpg">
+										<a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04" href="{{URL::asset('storage/app/hinh_san_pham/'.$sp->hinh3)}}">
 											<i class="fa fa-expand"></i>
 										</a>
 									</div>

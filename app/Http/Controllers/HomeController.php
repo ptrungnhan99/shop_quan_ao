@@ -35,5 +35,9 @@ class HomeController extends Controller
             'dsLSP' => $dsLSP,
             'dsLSP1' => $dsLSP1
         ]);
+
+    }
+    public function test(){
+        return view('admin.master');
     }
 }

@@ -1,20 +1,21 @@
-<!-- Fontfaces CSS-->
-<link href="{{URL::asset('public/template/admin/css/font-face.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/font-awesome-4.7/css/font-awesome.min.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/font-awesome-5/css/fontawesome-all.min.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/mdi-font/css/material-design-iconic-font.min.css')}}" rel="stylesheet" media="all">
-
-<!-- Bootstrap CSS-->
-<link href="{{URL::asset('public/template/admin/vendor/bootstrap-4.1/bootstrap.min.css')}}" rel="stylesheet" media="all">
-
-<!-- Vendor CSS-->
-<link href="{{URL::asset('public/template/admin/vendor/animsition/animsition.min.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/wow/animate.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/css-hamburgers/hamburgers.min.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/slick/slick.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/select2/select2.min.css')}}" rel="stylesheet" media="all">
-<link href="{{URL::asset('public/template/admin/vendor/perfect-scrollbar/perfect-scrollbar.css')}}" rel="stylesheet" media="all">
-
-<!-- Main CSS-->
-<link href="{{URL::asset('public/template/admin/css/theme.css')}}" rel="stylesheet" media="all">
+<!-- Google Font: Source Sans Pro -->
+<link rel="stylesheet"
+href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+<!-- Font Awesome -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/plugins/fontawesome-free/css/all.min.css')}}">
+<!-- Ionicons -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css')}}">
+<!-- Tempusdominus Bootstrap 4 -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css')}}">
+<!-- iCheck -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+<!-- JQVMap -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/plugins/jqvmap/jqvmap.min.css')}}">
+<!-- Theme style -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/dist/css/adminlte.min.css')}}">
+<!-- overlayScrollbars -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css')}}">
+<!-- Daterange picker -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/plugins/daterangepicker/daterangepicker.css')}}">
+<!-- summernote -->
+<link rel="stylesheet" href="{{URL::asset('public/template/admin/plugins/summernote/summernote-bs4.min.css')}}">

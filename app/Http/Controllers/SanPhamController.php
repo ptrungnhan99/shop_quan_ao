@@ -40,7 +40,7 @@ class SanPhamController extends Controller
         $data = $request->all();
         $sanpham = new SanPham();
         $sanpham->ten_sp = $data['ten_sp'];
-        // $sanpham->ten_url = text2url($data['ten_sp']);
+        $sanpham->ten_url = $this->text2url($data['ten_sp']);
         $sanpham->ma_loai = $data['ma_loai'];
         $sanpham->ma_thuong_hieu = $data['ma_thuong_hieu'];
         $sanpham->mo_ta_tom_tat = $data['mo_ta_tom_tat'];
