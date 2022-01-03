@@ -9,11 +9,11 @@ class Banner extends Model
 {
     use HasFactory;
     protected $table = 'banner';
-    protected $fillable = [
-        'id',
-        'ten_banner',
-        'tieu_de',
-        'hinh',
-        'trang_thai'
-    ];
+    // protected $fillable = [
+    //     'id',
+    //     'ten_banner',
+    //     'tieu_de',
+    //     'hinh',
+    //     'trang_thai'
+    // ];
 }

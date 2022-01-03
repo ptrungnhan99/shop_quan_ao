@@ -88,7 +88,7 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                            <a href="{{url('admin/main')}}" class="nav-link active">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Quản lý thống kê
@@ -106,13 +106,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/forms/general.html" class="nav-link">
+                                    <a href="{{url('san-pham/them')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm sản phẩm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/forms/advanced.html" class="nav-link">
+                                    <a href="{{url('san-pham')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách sản phẩm</p>
                                     </a>
@@ -185,13 +185,13 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="display: none;">
                                   <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('slider/them')}}" class="nav-link">
                                       <i class="far fa-dot-circle nav-icon"></i>
                                       <p>Thêm slider</p>
                                     </a>
                                   </li>
                                   <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('slider')}}" class="nav-link">
                                       <i class="far fa-dot-circle nav-icon"></i>
                                       <p>Danh sách slider</p>
                                     </a>
@@ -208,13 +208,13 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="display: none;">
                                   <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('banner/them')}}" class="nav-link">
                                       <i class="far fa-dot-circle nav-icon"></i>
                                       <p>Thêm banner</p>
                                     </a>
                                   </li>
                                   <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="{{url('banner')}}" class="nav-link">
                                       <i class="far fa-dot-circle nav-icon"></i>
                                       <p>Danh sách banner</p>
                                     </a>
@@ -820,6 +820,9 @@
     <!-- ./wrapper -->
 
     @include('admin.script')
+    @section('script')
+
+    @show
 </body>
 
 </html>

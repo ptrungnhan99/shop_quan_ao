@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSanPhamPost;
 use App\Models\LoaiSanPham;
 use App\Models\SanPham;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class SanPhamController extends Controller
 {
@@ -30,13 +32,25 @@ class SanPhamController extends Controller
         return view('client.products.product-detail',['sp'=>$sp, 'sp_lq'=>$sp_lq]);
         // // dd($sp_lq);
     }
+    public function index(){
+        $sanpham = DB::table('sanpham')
+        ->join('loaisanpham','loaisanpham.id','=','sanpham.ma_loai')
+        ->join('thuonghieu','thuonghieu.id','=','sanpham.ma_thuong_hieu')
+        ->select('sanpham.id','sanpham.ten_sp','loaisanpham.ten_loai','thuonghieu.ten_thuong_hieu','sanpham.gia','sanpham.trang_thai')
+        ->paginate(12);
+        // dd($sanpham);
+        return view('admin.sanpham.list',[
+            'sanpham' => $sanpham
+        ]);
+    }
     public function create(){
         return view('admin.sanpham.add');
     }
-    public function store(Request $request){
+    public function store(StoreSanPhamPost $request){
         $namHinh1 = '';
         $namHinh2 = '';
         $namHinh3 = '';
+        $validated = $request->validated();
         $data = $request->all();
         $sanpham = new SanPham();
         $sanpham->ten_sp = $data['ten_sp'];
@@ -77,6 +91,64 @@ class SanPhamController extends Controller
             return redirect()->back()->with('alert','Thêm thành công');
         }else{
             return redirect()->back()->with('alert','Thêm không thành công');
+        }
+    }
+    public function edit($id){
+        $sanpham = SanPham::find($id);
+        return view('admin.sanpham.edit',['sp' => $sanpham]);
+    }
+    public function update(Request $request,$id){
+        $sanpham = SanPham::find($id);
+        $data = $request->all();
+        $nameHinh1 = $sanpham->hinh1;
+        if($request->hasfile('hinh1')){
+            if($request->file('hinh1')->isValid()){
+                $file = $request->file('hinh1');
+                $nameHinh1 = $file->getClientOriginalName();
+                $request->hinh1->storeAs('hinh_san_pham',$nameHinh1);
+            }
+        }
+        $nameHinh2 = $sanpham->hinh2;
+        if($request->hasfile('hinh2')){
+            if($request->file('hinh2')->isValid()){
+                $file = $request->file('hinh2');
+                $nameHinh2 = $file->getClientOriginalName();
+                $request->hinh2->storeAs('hinh_san_pham',$nameHinh2);
+            }
+        }
+        $nameHinh3 = $sanpham->hinh3;
+        if($request->hasfile('hinh3')){
+            if($request->file('hinh3')->isValid()){
+                $file = $request->file('hinh3');
+                $nameHinh3 = $file->getClientOriginalName();
+                $request->hinh3->storeAs('hinh_san_pham',$nameHinh3);
+            }
+        }
+        $sanpham->hinh1 = $nameHinh1;
+        $sanpham->hinh2 = $nameHinh2;
+        $sanpham->hinh3 = $nameHinh3;
+        $sanpham->ten_sp = $data['ten_sp'];
+        $sanpham->ten_url = $this->text2url($data['ten_sp']);
+        $sanpham->ma_loai = $data['ma_loai'];
+        $sanpham->ma_thuong_hieu = $data['ma_thuong_hieu'];
+        $sanpham->mo_ta_tom_tat = $data['mo_ta_tom_tat'];
+        $sanpham->chi_tiet = $data['chi_tiet'];
+        $sanpham->gia = $data['gia'];
+        $sanpham->trang_thai = isset($data['trang_thai'])? true: false;
+        $sanpham->gioi_tinh = ($data['gioi_tinh'] == 1) ? true: false;
+        $n = $sanpham->save();
+        if($n>0){
+            return redirect('san-pham');
+        }else{
+            return redirect()->back()->with('alert','Cập nhật không thành công');
+        }
+    }
+
+    public function destroy($id){
+        $sanpham = SanPham::find($id);
+        $n = $sanpham->delete();
+        if($n>0){
+            return redirect('san-pham');
         }
     }
     public function text2url($str) {
