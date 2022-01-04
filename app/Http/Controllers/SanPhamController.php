@@ -36,7 +36,7 @@ class SanPhamController extends Controller
         $sanpham = DB::table('sanpham')
         ->join('loaisanpham','loaisanpham.id','=','sanpham.ma_loai')
         ->join('thuonghieu','thuonghieu.id','=','sanpham.ma_thuong_hieu')
-        ->select('sanpham.id','sanpham.ten_sp','loaisanpham.ten_loai','thuonghieu.ten_thuong_hieu','sanpham.gia','sanpham.trang_thai')
+        ->select('sanpham.hinh1','sanpham.id','sanpham.ten_sp','loaisanpham.ten_loai','thuonghieu.ten_thuong_hieu','sanpham.gia','sanpham.trang_thai')
         ->paginate(12);
         // dd($sanpham);
         return view('admin.sanpham.list',[

@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\SanPhamController;
 use App\Http\Controllers\SliderController;
+use App\Http\Controllers\TinTucController;
 use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
@@ -77,4 +78,13 @@ Route::prefix('khach-hang')->group(function () {
     Route::post('add-to-cart/{id}', [KhachHangController::class,'AddToCart']);
     Route::get('info-cart',[KhachHangController::class,'InfoCart']);
 
+});
+Route::prefix('tin-tuc')->group(function () {
+    Route::get('', [TinTucController::class,'index']);
+    Route::get('{id}', [TinTucController::class,'show'])->where('id','[0-9]+');
+    Route::get('cap-nhat/{id}', [TinTucController::class,'edit']);
+    Route::put('cap-nhat/{id}', [TinTucController::class,'update']);
+    Route::get('them', [TinTucController::class,'create']);
+    Route::post('them', [TinTucController::class,'store']);
+    Route::delete('xoa/{id}', [TinTucController::class,'destroy']);
 });

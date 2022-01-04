@@ -1,6 +1,6 @@
 @extends('admin.master')
 @section('title')
-    Danh sách Banner
+    Danh sách Tin tức
 @endsection
 @section('content')
 <div class="row">
@@ -8,7 +8,7 @@
         <!-- DATA TABLE-->
         <div class="card">
             <div class="card-header text-white bg-primary">
-              Danh sách Banner
+              Danh sách Tin tức
             </div>
             <div class="card-body">
                 <table class="table">
@@ -16,32 +16,34 @@
                       <tr>
                         <th scope="col">#</th>
                         <th scope="col">Hình</th>
-                        <th scope="col">Tên Banner</th>
                         <th scope="col">Tiêu đề</th>
+                        <th scope="col">Mô tả tóm tắt</th>
+                        <th scope="col">Tác giả</th>
                         <th scope="col">Trang thái</th>
                         <th>&nbsp</th>
                         <th>&nbsp</th>
                       </tr>
                     </thead>
                     <tbody class="text-center">
-                        @foreach ($ds_banner as $banner )
+                        @foreach ($tintuc as $tt )
                         <tr>
-                            <th scope="row">{{$banner->id}}</th>
+                            <th scope="row">{{$tt->id}}</th>
                             <td>
-                                <img width="100px" class="img-thumbnail" src="{{URL::asset('storage/app/hinh_banner/'.$banner->hinh)}}" alt="">
+                                <img width="200px" class="img-thumbnail" src="{{URL::asset('storage/app/hinh_tin_tuc/'.$tt->hinh)}}" alt="">
                             </td>
-                            <td>{{$banner->ten_banner}}</td>
-                            <td>{{$banner->tieu_de}}</td>
+                            <td>{{$tt->tieu_de}}</td>
+                            <td>{{$tt->tom_tat}}</td>
+                            <td>{{$tt->tac_gia}}</td>
                             <td class="text-center">
-                                @if ($banner->trang_thai == 1)
+                                @if ($tt->trang_thai == 1)
                                     <span class="btn btn-success btn-sm">Yes</span>
                                 @else
                                     <span class="btn btn-info btn-sm">No</span>
                                 @endif
                             </td>
-                            <td><a class="btn btn-outline-success" href="{{url('banner/cap-nhat/'.$banner->id)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+                            <td><a class="btn btn-outline-success" href="{{url('tin-tuc/cap-nhat/'.$tt->id)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
                             <td>
-                                <form action="{{url('banner/xoa/'.$banner->id)}}" method="post">
+                                <form action="{{url('tin-tuc/xoa/'.$tt->id)}}" method="post">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bạn có muốn xóa không ?')">

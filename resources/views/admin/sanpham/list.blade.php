@@ -8,13 +8,14 @@
         <!-- DATA TABLE-->
         <div class="card">
             <div class="card-header text-white bg-primary">
-              Danh sách Banner
+              Danh sách sản phẩm
             </div>
             <div class="card-body">
                 <table class="table">
                     <thead class="thead-light">
                       <tr>
                         <th scope="col">Mã sản phẩm</th>
+                        <th scope="col">Hình</th>
                         <th scope="col">Tên sản phẩm</th>
                         <th scope="col">Tên loại </th>
                         <th scope="col">Tên thương hiệu</th>
@@ -28,6 +29,9 @@
                         @foreach ($sanpham as $sp )
                         <tr>
                             <th scope="row">{{$sp->id}}</th>
+                            <td>
+                                <img width="100px" class="img-thumbnail" src="{{URL::asset('storage/app/hinh_san_pham/'.$sp->hinh1)}}" alt="">
+                            </td>
                             <td>{{$sp->ten_sp}}</td>
                             <td>{{$sp->ten_loai}}</td>
                             <td>{{$sp->ten_thuong_hieu}}</td>

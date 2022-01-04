@@ -15,6 +15,7 @@
                     <thead class="thead-light text-center">
                       <tr>
                         <th scope="col">#</th>
+                        <th scope="col">Hình</th>
                         <th scope="col">Tên Slider</th>
                         <th scope="col">Tiêu đề</th>
                         <th scope="col">Trang thái</th>
@@ -26,6 +27,9 @@
                         @foreach ($ds_slider as $slider )
                         <tr>
                             <th scope="row">{{$slider->id}}</th>
+                            <td>
+                                <img width="100px" class="img-thumbnail" src="{{URL::asset('storage/app/hinh_slider/'.$slider->hinh)}}" alt="">
+                            </td>
                             <td>{{$slider->ten_slider}}</td>
                             <td>{{$slider->tieu_de}}</td>
                             <td class="text-center">
