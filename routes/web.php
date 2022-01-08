@@ -77,7 +77,8 @@ Route::prefix('san-pham')->group(function () {
 Route::prefix('khach-hang')->group(function () {
     Route::post('add-to-cart/{id}', [KhachHangController::class,'AddToCart']);
     Route::get('info-cart',[KhachHangController::class,'InfoCart']);
-
+    Route::post('update-cart',[KhachHangController::class,'UpdateCart']);
+    Route::get('delete-cart/{id}',[KhachHangController::class,'DeleteCart']);
 });
 Route::prefix('tin-tuc')->group(function () {
     Route::get('', [TinTucController::class,'index']);

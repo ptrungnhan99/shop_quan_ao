@@ -18,4 +18,14 @@ class KhachHangController extends Controller
     public function InfoCart(){
         return view('client.cart-info');
     }
+    public function UpdateCart(Request $request){
+        $rowID=$request->Th_rowID;
+        $soLuong=$request->Th_soluong*1;
+        Cart::update($rowID,$soLuong);
+        return redirect('khach-hang/info-cart');
+    }
+    public function DeleteCart($id){
+        Cart::remove($id);
+        return redirect()->back();
+    }
 }

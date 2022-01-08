@@ -2,6 +2,9 @@
 @section('title')
     Thời trang việt
 @endsection
+@section('head')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+@endsection
 @section('content')
     <!-- breadcrumb -->
 	<div class="container">
@@ -17,167 +20,75 @@
 		</div>
 	</div>
 
-    @if(Cart::count() !==0 )
+
 	<!-- Shoping Cart -->
-	<div class="bg0 p-t-75 p-b-85">
+	<div id="changeListCart" class="bg0 p-t-75 p-b-85">
+        @if(Cart::count() !==0 )
 		<div class="container">
 			<div class="row">
-				<div class="col-lg-10 col-xl-7 m-lr-auto m-b-50">
-					<div class="m-l-25 m-r--38 m-lr-0-xl">
-						<div class="wrap-table-shopping-cart">
-							<table class="table-shopping-cart">
-								<tr class="table_head">
-									<th class="column-1">Hình</th>
-									<th class="column-2">Tên sản phẩm</th>
-									<th class="column-3">Số lượng</th>
-                                    <th class="column-4">Đơn giá</th>
-									<th class="column-5">Thành tiền</th>
-                                    <th class="column-5">Xóa</th>
-								</tr>
-                                @foreach (Cart::content() as $row)
-                                <tr class="table_row">
-									<td class="column-1">
-										<div class="how-itemcart1">
-											<img src="{{URL::asset('storage/app/hinh_san_pham/'.$row->options->hinh)}}" alt="IMG">
-										</div>
-									</td>
-									<td class="column-2">{{$row->name}}</td>
-									<td class="column-3">
-										<form class="form-inline" method="post" action="{{ url('khach-hang/cap-nhat-gio-hang') }}">
-                                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                            <input type="hidden" value="{{ $row->rowId }}" name="Th_rowID">
-                                            <select name="Th_soluong" class="form-control" style="width: 100px; text-align: center;">
-                                            @for ($i = 1; $i < 10; $i++)
+                <div class="col-12">
+                    <table class="table">
+                        <thead class="text-center">
+                          <tr>
+                            <th scope="col">Hình</th>
+                            <th scope="col">Tên sản phẩm</th>
+                            <th scope="col">Đơn giá </th>
+                            <th scope="col">Thành tiền</th>
+                            <th scope="col">Số lượng</th>
+                            <th scope="col">&nbsp;</th>
+                          </tr>
+                        </thead>
+                        <tbody class="text-center">
+                            @foreach (Cart::content() as $row )
+                            <tr>
+                                <td>
+                                    <img width="100px" class="thumb-nail" src="{{URL::asset('storage/app/hinh_san_pham/'.$row->options->hinh)}}" alt="">
+                                </td>
+                                <td>{{$row->name}}</td>
+                                <td>{{number_format($row->price)}}đ</td>
+                                <td>{{number_format($row->price * $row->qty)}}đ</td>
+                                <td>
+                                    <form class="form-inline" method="post" action="{{ url('khach-hang/update-cart') }}">
+                                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                        <input type="hidden" value="{{ $row->rowId }}" name="Th_rowID">
+                                        <select name="Th_soluong" class="form-control" style="width: 100px; text-align: center;">
+                                        @for ($i = 1; $i < 10; $i++)
                                             @if ($i == ($row->qty*1))
                                             <option value="{{ $i }}" selected="selected">{{ $i }}</option>
                                             @else
                                             <option value="{{ $i }}">{{ $i }}</option>
                                             @endif
-                                            @endfor
-                                            </select>
-                                            <input type="submit" name="Th_submit" value="Cập nhật" class="btn btn-primary btn-sm">
-                                        </form>
+                                        @endfor
+                                        </select>
+                                        <input type="submit" name="Th_submit" value="Cập nhật" style="background-color: #717fe0; color:white;" class="btn btn-sm">
+                                    </form>
 
-									</td>
-                                    <td class="column-4">{{number_format($row->price)}}</td>
-									<td class="column-5">{{number_format($row->price*$row->qty)}}</td>
-                                    <td class="column-5">
-                                        <a href="">Xóa</a>
-                                    </td>
-								</tr>
-                                @endforeach
-
-
-							</table>
-						</div>
-
-						<div class="flex-w flex-sb-m bor15 p-t-18 p-b-15 p-lr-40 p-lr-15-sm">
-							<div class="flex-w flex-m m-r-20 m-tb-5">
-								<input class="stext-104 cl2 plh4 size-117 bor13 p-lr-20 m-r-10 m-tb-5" type="text" name="coupon" placeholder="Coupon Code">
-
-								<div class="flex-c-m stext-101 cl2 size-118 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-5">
-									Apply coupon
-								</div>
-							</div>
-
-							<div class="flex-c-m stext-101 cl2 size-119 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer m-tb-10">
-								Update Cart
-							</div>
-						</div>
-					</div>
-				</div>
-
-				<div class="col-sm-10 col-lg-7 col-xl-5 m-lr-auto m-b-50">
-					<div class="bor10 p-lr-40 p-t-30 p-b-40 m-l-63 m-r-40 m-lr-0-xl p-lr-15-sm">
-						<h4 class="mtext-109 cl2 p-b-30">
-							Cart Totals
-						</h4>
-
-						<div class="flex-w flex-t bor12 p-b-13">
-							<div class="size-208">
-								<span class="stext-110 cl2">
-									Subtotal:
-								</span>
-							</div>
-
-							<div class="size-209">
-								<span class="mtext-110 cl2">
-									$79.65
-								</span>
-							</div>
-						</div>
-
-						<div class="flex-w flex-t bor12 p-t-15 p-b-30">
-							<div class="size-208 w-full-ssm">
-								<span class="stext-110 cl2">
-									Shipping:
-								</span>
-							</div>
-
-							<div class="size-209 p-r-18 p-r-0-sm w-full-ssm">
-								<p class="stext-111 cl6 p-t-2">
-									There are no shipping methods available. Please double check your address, or contact us if you need any help.
-								</p>
-
-								<div class="p-t-15">
-									<span class="stext-112 cl8">
-										Calculate Shipping
-									</span>
-
-									<div class="rs1-select2 rs2-select2 bor8 bg0 m-b-12 m-t-9">
-										<select class="js-select2" name="time">
-											<option>Select a country...</option>
-											<option>USA</option>
-											<option>UK</option>
-										</select>
-										<div class="dropDownSelect2"></div>
-									</div>
-
-									<div class="bor8 bg0 m-b-12">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="state" placeholder="State /  country">
-									</div>
-
-									<div class="bor8 bg0 m-b-22">
-										<input class="stext-111 cl8 plh3 size-111 p-lr-15" type="text" name="postcode" placeholder="Postcode / Zip">
-									</div>
-
-									<div class="flex-w">
-										<div class="flex-c-m stext-101 cl2 size-115 bg8 bor13 hov-btn3 p-lr-15 trans-04 pointer">
-											Update Totals
-										</div>
-									</div>
-
-								</div>
-							</div>
-						</div>
-
-						<div class="flex-w flex-t p-t-27 p-b-33">
-							<div class="size-208">
-								<span class="mtext-101 cl2">
-									Total:
-								</span>
-							</div>
-
-							<div class="size-209 p-t-1">
-								<span class="mtext-110 cl2">
-									$79.65
-								</span>
-							</div>
-						</div>
-
-						<button class="flex-c-m stext-101 cl0 size-116 bg3 bor14 hov-btn3 p-lr-15 trans-04 pointer">
-							Proceed to Checkout
-						</button>
-					</div>
-				</div>
+                                </td>
+                                <td>
+                                    <a href="{{ url('khach-hang/delete-cart/'.$row->rowId)}}" id="btnDelete" class="btn sm btn-danger">Xóa</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                            <tr>
+                                <th scope="col">Tổng tiền</th>
+                                <td colspan="4">&nbsp;</td>
+                                <td>{{Cart::total()}}</td>
+                            </tr>
+                        </tbody>
+                      </table>
+                      <a href="{{ url('khach-hang/tien-hanh-dat-hang') }}" class="btn" style="background-color: #f74877; color:white;"> Tiến hành đặt hàng</a>
+                </div>
 			</div>
 		</div>
+        @else
+        <h1 class="text-center">Giỏng hàng rõng</h1>
+        @endif
 	</div>
-    @endif
-
-
-
 
 
 @endsection
-
+@section('script')
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"
+    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+@show
