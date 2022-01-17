@@ -9,20 +9,34 @@
                 </div>
 
                 <div class="right-top-bar flex-w h-full">
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        Help & FAQs
+                @if(Session::has('ho_ten_kh'))
+                    <a href="{{url('khach-hang/info-customer/'.Session::get('id_kh'))}}" class="flex-c-m p-lr-10 trans-04">
+                        {{-- {{Session::get('ho_ten_kh')}} --}}
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
                     </a>
-
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        My Account
+                    <a href="{{url('logout')}}" class="flex-c-m p-lr-10 trans-04">
+                        Đăng xuất
                     </a>
+                @elseif (Cookie::has('ho_ten_kh'))
+                    <a href="{{url('khach-hang/info-customer/'.Cookie::get('id_kh'))}}" class="flex-c-m p-lr-10 trans-04">
+                        {{-- {{Cookie::get('ho_ten_kh')}} --}}
+                        <i class="fa fa-user-circle" aria-hidden="true"></i>
+                    </a>
+                    <a href="{{url('logout')}}" class="flex-c-m p-lr-10 trans-04">
+                        Đăng xuất
+                    </a>
+                @else
+                    <a href="{{url('login')}}" class="flex-c-m p-lr-10 trans-04">
+                        Đăng nhập
+                    </a>
+                @endif
 
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
                         EN
                     </a>
 
                     <a href="#" class="flex-c-m trans-04 p-lr-25">
-                        USD
+                        VI
                     </a>
                 </div>
             </div>
@@ -56,10 +70,10 @@
                         <li>
                             <a href="product.html">Thương hiệu</a>
                             <ul class="sub-menu">
-                                <li><a href="index.html">Viettien</a></li>
-                                <li><a href="home-02.html">PT2000</a></li>
-                                <li><a href="home-03.html">YaMe</a></li>
-                                <li><a href="home-03.html">Blue Exchange</a></li>
+                                <li><a href="{{url('san-pham/viet-tien')}}">Viettien</a></li>
+                                <li><a href="{{url('san-pham/pt2000')}}">PT2000</a></li>
+                                <li><a href="{{url('san-pham/yame')}}">YaMe</a></li>
+                                <li><a href="{{url('san-pham/blue-exchange')}}">Blue Exchange</a></li>
                             </ul>
                         </li>
 
@@ -134,6 +148,7 @@
 
             <li>
                 <div class="right-top-bar flex-w h-full">
+
                     <a href="#" class="flex-c-m p-lr-10 trans-04">
                         Help & FAQs
                     </a>
@@ -173,10 +188,10 @@
             <li>
                 <a href="product.html">Thương hiệu</a>
                 <ul class="sub-menu-m">
-                    <li><a href="index.html">Viettien</a></li>
-                    <li><a href="home-02.html">PT2000</a></li>
-                    <li><a href="home-03.html">YaMe</a></li>
-                    <li><a href="home-03.html">Blue Exchange</a></li>
+                    <li><a href="{{url('san-pham/viet-tien')}}">Viettien</a></li>
+                    <li><a href="{{url('san-pham/pt2000')}}">PT2000</a></li>
+                    <li><a href="{{url('san-pham/yame')}}">YaMe</a></li>
+                    <li><a href="{{url('san-pham/blue-exchange')}}">Blue Exchange</a></li>
                 </ul>
                 <span class="arrow-main-menu-m">
                     <i class="fa fa-angle-right" aria-hidden="true"></i>

@@ -26,7 +26,33 @@ class SanPhamController extends Controller
             'dssp' => $dssp
         ]);
     }
-    public function productDetail($id){
+    public function productViettien(){
+        $dssp = SanPham::where('trang_thai',1)->where('ma_thuong_hieu',1)->get();
+       return view('client.products.product-viettien',[
+        'dssp' => $dssp
+       ]);
+    }
+    public function productPT(){
+        $dssp = SanPham::where('trang_thai',1)->where('ma_thuong_hieu',2)->get();
+       return view('client.products.product-pt2000',[
+        'dssp' => $dssp
+       ]);
+    }
+    public function productYaMe(){
+        $dssp = SanPham::where('trang_thai',1)->where('ma_thuong_hieu',3)->get();
+       return view('client.products.product-yame',[
+        'dssp' => $dssp
+       ]);
+    }
+    public function productBlue(){
+        $dssp = SanPham::where('trang_thai',1)->where('ma_thuong_hieu',4)->get();
+       return view('client.products.product-blue',[
+        'dssp' => $dssp
+       ]);
+    }
+    public function productDetail($string){
+        $array = explode('-',$string);
+        $id = $array[count($array) - 1];
         $sp = SanPham::find($id);
         $sp_lq = SanPham::where('ma_loai',$sp->ma_loai)->where('id','<>',$id)->take(4)->get();
         return view('client.products.product-detail',['sp'=>$sp, 'sp_lq'=>$sp_lq]);

@@ -76,7 +76,14 @@
                             </tr>
                         </tbody>
                       </table>
-                      <a href="{{ url('khach-hang/tien-hanh-dat-hang') }}" class="btn" style="background-color: #f74877; color:white;"> Tiến hành đặt hàng</a>
+                    @if(Session::has('ho_ten_kh'))
+                        <a href="{{ url('khach-hang/order-item/'.Session::get('id_kh'))}}" class="btn" style="background-color: #f74877; color:white;"> Tiến hành đặt hàng</a>
+                    @elseif (Cookie::has('ho_ten_kh'))
+                        <a href="{{ url('khach-hang/order-item/'.Cookie::get('id_kh'))}}" class="btn" style="background-color: #f74877; color:white;"> Tiến hành đặt hàng</a>
+                    @else
+                        <a href="{{ url('login') }}" class="btn" style="background-color: #f74877; color:white;"> Tiến hành đặt hàng</a>
+                    @endif
+
                 </div>
 			</div>
 		</div>

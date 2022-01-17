@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\MainController;
 use App\Http\Controllers\Admin\User\LoginController;
 use App\Http\Controllers\BannerController;
+use App\Http\Controllers\DonHangController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\KhachHangController;
 use App\Http\Controllers\SanPhamController;
@@ -27,13 +28,15 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/clear-cache', function() {
-    Artisan::call('cache:clear');
-    return "Cache is cleared";
-  });
 
-Route::get('/',[HomeController::class,'index']);
-Route::get('/test',[HomeController::class,'test']);
+Route::prefix('/')->group(function () {
+    Route::get('',[HomeController::class,'index']);
+    Route::get('login', [HomeController::class,'login']);
+    Route::post('login', [HomeController::class,'postLogin']);
+    Route::get('logout', [HomeController::class,'logout']);
+    Route::get('register', [HomeController::class,'register']);
+    Route::post('register', [HomeController::class,'postRegister']);
+});
 
 Route::get('admin/user/login',[LoginController::class,'index'])->name('login');
 
@@ -67,7 +70,11 @@ Route::prefix('san-pham')->group(function () {
     Route::get('', [SanPhamController::class,'index']);
     Route::get('nu', [SanPhamController::class,'productWomen']);
     Route::get('nam', [SanPhamController::class,'productMen']);
-    Route::get('{id}', [SanPhamController::class,'productDetail'])->where('id','[0-9]+');
+    Route::get('viet-tien', [SanPhamController::class,'productViettien']);
+    Route::get('pt2000', [SanPhamController::class,'productPT']);
+    Route::get('yame', [SanPhamController::class,'productYaMe']);
+    Route::get('blue-exchange', [SanPhamController::class,'productBlue']);
+    Route::get('{string}', [SanPhamController::class,'productDetail'])->where('id','[0-9]+');
     Route::get('cap-nhat/{id}', [SanPhamController::class,'edit']);
     Route::put('cap-nhat/{id}', [SanPhamController::class,'update']);
     Route::get('them', [SanPhamController::class,'create']);
@@ -79,6 +86,9 @@ Route::prefix('khach-hang')->group(function () {
     Route::get('info-cart',[KhachHangController::class,'InfoCart']);
     Route::post('update-cart',[KhachHangController::class,'UpdateCart']);
     Route::get('delete-cart/{id}',[KhachHangController::class,'DeleteCart']);
+    // Route::get('order-item', [KhachHangController::class,'AddNewCustomer']);
+    Route::get('order-item/{id}', [KhachHangController::class,'store']);
+    Route::get('order/{id}', [KhachHangController::class,'Order']);
 });
 Route::prefix('tin-tuc')->group(function () {
     Route::get('', [TinTucController::class,'index']);
@@ -88,4 +98,9 @@ Route::prefix('tin-tuc')->group(function () {
     Route::get('them', [TinTucController::class,'create']);
     Route::post('them', [TinTucController::class,'store']);
     Route::delete('xoa/{id}', [TinTucController::class,'destroy']);
+});
+Route::prefix('don-hang')->group(function () {
+    Route::get('', [DonHangController::class,'index']);
+    Route::get('cap-nhat/{id}', [DonHangController::class,'edit']);
+    Route::put('cap-nhat/{id}', [DonHangController::class,'update']);
 });
