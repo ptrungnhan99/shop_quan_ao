@@ -64,6 +64,11 @@ Route::prefix('san-pham')->group(function () {
     // Route::delete('xoa/{id}', [SanPhamController::class,'destroy']);
 });
 
+Route::prefix('tin-tuc')->group(function () {
+    Route::get('', [TinTucController::class,'blog']);
+    Route::get('{string}', [TinTucController::class,'blogDetail']);
+});
+
 Route::prefix('khach-hang')->group(function () {
     Route::post('add-to-cart/{id}', [KhachHangController::class,'AddToCart']);
     Route::get('info-cart',[KhachHangController::class,'InfoCart']);

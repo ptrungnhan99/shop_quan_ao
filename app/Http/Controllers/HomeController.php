@@ -8,6 +8,7 @@ use App\Models\KhachHang;
 use App\Models\LoaiSanPham;
 use App\Models\SanPham;
 use App\Models\Slider;
+use App\Models\TinTuc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
@@ -29,14 +30,15 @@ class HomeController extends Controller
             $lsp_sp1[$lsp->id] = SanPham::where('ma_loai',$lsp->id)->where('trang_thai',1)
             ->where('gioi_tinh',1)->take(8)->get();
         }
-        // dd($lsp_sp);
+        $dstt = TinTuc::where('trang_thai',1)->orderBy('created_at','DESC')->take(3)->get();
         return view('client.home.index',[
             'slider' => $slider,
             'banner' => $banner,
             'lsp_sp' => $lsp_sp,
             'lsp_sp1' => $lsp_sp1,
             'dsLSP' => $dsLSP,
-            'dsLSP1' => $dsLSP1
+            'dsLSP1' => $dsLSP1,
+            'dstt' => $dstt
         ]);
 
     }

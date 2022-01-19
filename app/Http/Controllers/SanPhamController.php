@@ -169,7 +169,7 @@ class SanPhamController extends Controller
         $sanpham->gioi_tinh = ($data['gioi_tinh'] == 1) ? true: false;
         $n = $sanpham->save();
         if($n>0){
-            return redirect('san-pham');
+            return redirect('admin/san-pham');
         }else{
             return redirect()->back()->with('alert','Cập nhật không thành công');
         }
@@ -179,7 +179,7 @@ class SanPhamController extends Controller
         $sanpham = SanPham::find($id);
         $n = $sanpham->delete();
         if($n>0){
-            return redirect('san-pham');
+            return redirect('admin/san-pham');
         }
     }
     public function text2url($str) {

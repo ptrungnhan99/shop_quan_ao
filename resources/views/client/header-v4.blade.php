@@ -82,7 +82,7 @@
                         </li>
 
                         <li>
-                            <a href="blog.html">Tin tức</a>
+                            <a href="{{url('tin-tuc')}}">Tin tức</a>
                         </li>
 
                         <li>
@@ -203,7 +203,7 @@
             </li>
 
             <li>
-                <a href="blog.html">Tin tức</a>
+                <a href="{{url('tin-tuc')}}">Tin tức</a>
             </li>
 
             <li>
