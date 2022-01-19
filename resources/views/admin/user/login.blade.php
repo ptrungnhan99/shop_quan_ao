@@ -28,7 +28,7 @@
             <div class="card-body">
                 <p class="login-box-msg">Sign in to start your session</p>
 
-                <form action="{{url('admin/user/login')}}" method="post">
+                <form action="{{url('user/login')}}" method="post">
                     @csrf
                     <div class="input-group mb-3">
                         <input type="email" class="form-control" name="email" placeholder="Email">
@@ -71,6 +71,18 @@
                     <a href="register.html" class="text-center">Register a new membership</a>
                 </p>
             </div>
+            @if (count($errors) > 0)
+            <div class="alert alert-danger">
+                @foreach ($errors->all() as $error )
+                    {{$error}}<br>
+                @endforeach
+            </div>
+            @endif
+            @if (session('alert'))
+                <div class="alert alert-success">
+                    {{session('alert')}}
+                </div>
+            @endif
             <!-- /.card-body -->
         </div>
         <!-- /.card -->

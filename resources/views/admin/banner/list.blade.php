@@ -39,9 +39,9 @@
                                     <span class="btn btn-info btn-sm">No</span>
                                 @endif
                             </td>
-                            <td><a class="btn btn-outline-success" href="{{url('banner/cap-nhat/'.$banner->id)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+                            <td><a class="btn btn-outline-success" href="{{url('admin/banner/cap-nhat/'.$banner->id)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
                             <td>
-                                <form action="{{url('banner/xoa/'.$banner->id)}}" method="post">
+                                <form action="{{url('admin/banner/xoa/'.$banner->id)}}" method="post">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bạn có muốn xóa không ?')">

@@ -65,7 +65,7 @@ class TinTucController extends Controller
         $tintuc->trang_thai = isset($data['trang_thai'])? true:false;
         $n = $tintuc->save();
         if($n>0){
-            return redirect('tin-tuc');
+            return redirect('admin/tin-tuc');
         }else{
             return redirect()->back()->with('alert','Thêm không thành công');
         }
@@ -74,7 +74,7 @@ class TinTucController extends Controller
         $tintuc = TinTuc::find($id);
         $n = $tintuc->delete();
         if($n>0){
-            return redirect('tin-tuc');
+            return redirect('admin/tin-tuc');
         }
     }
 }

@@ -50,19 +50,24 @@ class SanPhamController extends Controller
         'dssp' => $dssp
        ]);
     }
-    public function productDetail($string){
-        $array = explode('-',$string);
+    public function productDetail($chuoi){
+        $array = explode('-',$chuoi);
         $id = $array[count($array) - 1];
-        $sp = SanPham::find($id);
-        $sp_lq = SanPham::where('ma_loai',$sp->ma_loai)->where('id','<>',$id)->take(4)->get();
-        return view('client.products.product-detail',['sp'=>$sp, 'sp_lq'=>$sp_lq]);
-        // // dd($sp_lq);
+        $sp = SanPham::where('trang_thai',1)->where('id',$id)->first();
+        $ma_loai = $sp['ma_loai'];
+        $sp_lq = SanPham::where('ma_loai',$ma_loai)->where('id','<>',$id)->take(4)->get();
+        return view('client.products.product-detail',[
+            'sp'=>$sp,
+            'sp_lq'=>$sp_lq
+        ]);
+            // dd($sp_lq);
     }
     public function index(){
         $sanpham = DB::table('sanpham')
         ->join('loaisanpham','loaisanpham.id','=','sanpham.ma_loai')
         ->join('thuonghieu','thuonghieu.id','=','sanpham.ma_thuong_hieu')
         ->select('sanpham.hinh1','sanpham.id','sanpham.ten_sp','loaisanpham.ten_loai','thuonghieu.ten_thuong_hieu','sanpham.gia','sanpham.trang_thai')
+        ->orderBy('sanpham.created_at','DESC')
         ->paginate(12);
         // dd($sanpham);
         return view('admin.sanpham.list',[

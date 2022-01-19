@@ -23,12 +23,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
-// Route::get('/', function () {
-//     return view('welcome');
-// });
-
-
+//client
 Route::prefix('/')->group(function () {
     Route::get('',[HomeController::class,'index']);
     Route::get('login', [HomeController::class,'login']);
@@ -38,49 +33,37 @@ Route::prefix('/')->group(function () {
     Route::post('register', [HomeController::class,'postRegister']);
 });
 
-Route::get('admin/user/login',[LoginController::class,'index'])->name('login');
+// Route::get('admin/user/login',[LoginController::class,'index'])->name('login');
 
-Route::post('admin/user/login',[LoginController::class,'store']);
+// Route::post('admin/user/login',[LoginController::class,'store']);
 
-Route::middleware(['auth'])->group(function () {
-    Route::get('admin/main',[MainController::class,'index'])->name('admin');
-});
+// Route::middleware(['auth'])->group(function () {
+//     Route::get('admin/main',[MainController::class,'index'])->name('admin');
+//     // Route::get('san-pham/them', [SanPhamController::class,'create']);
+// });
 
-Route::prefix('slider')->group(function () {
-    Route::get('', [SliderController::class,'index']);
-    Route::get('{id}', [SliderController::class,'show'])->where('id','[0-9]+');
-    Route::get('cap-nhat/{id}', [SliderController::class,'edit']);
-    Route::put('cap-nhat/{id}', [SliderController::class,'update']);
-    Route::get('them', [SliderController::class,'create']);
-    Route::post('them', [SliderController::class,'store']);
-    Route::delete('xoa/{id}', [SliderController::class,'destroy']);
-});
+Route::prefix('user')->group(function(){
+    Route::get('login',[LoginController::class,'login'])->name('user/login');
+    Route::post('login',[LoginController::class,'postLogin']);
 
-Route::prefix('banner')->group(function () {
-    Route::get('', [BannerController::class,'index']);
-    Route::get('{id}', [BannerController::class,'show'])->where('id','[0-9]+');
-    Route::get('cap-nhat/{id}', [BannerController::class,'edit']);
-    Route::put('cap-nhat/{id}', [BannerController::class,'update']);
-    Route::get('them', [BannerController::class,'create']);
-    Route::post('them', [BannerController::class,'store']);
-    Route::delete('xoa/{id}', [BannerController::class,'destroy']);
 });
 
 Route::prefix('san-pham')->group(function () {
-    Route::get('', [SanPhamController::class,'index']);
+    // Route::get('', [SanPhamController::class,'index']);
     Route::get('nu', [SanPhamController::class,'productWomen']);
     Route::get('nam', [SanPhamController::class,'productMen']);
     Route::get('viet-tien', [SanPhamController::class,'productViettien']);
     Route::get('pt2000', [SanPhamController::class,'productPT']);
     Route::get('yame', [SanPhamController::class,'productYaMe']);
     Route::get('blue-exchange', [SanPhamController::class,'productBlue']);
-    Route::get('{string}', [SanPhamController::class,'productDetail'])->where('id','[0-9]+');
-    Route::get('cap-nhat/{id}', [SanPhamController::class,'edit']);
-    Route::put('cap-nhat/{id}', [SanPhamController::class,'update']);
-    Route::get('them', [SanPhamController::class,'create']);
-    Route::post('them', [SanPhamController::class,'store']);
-    Route::delete('xoa/{id}', [SanPhamController::class,'destroy']);
+    Route::get('{chuoi}', [SanPhamController::class,'productDetail']);
+    // Route::get('cap-nhat/{id}', [SanPhamController::class,'edit']);
+    // Route::put('cap-nhat/{id}', [SanPhamController::class,'update']);
+    // Route::get('them', [SanPhamController::class,'create']);
+    // Route::post('them', [SanPhamController::class,'store']);
+    // Route::delete('xoa/{id}', [SanPhamController::class,'destroy']);
 });
+
 Route::prefix('khach-hang')->group(function () {
     Route::post('add-to-cart/{id}', [KhachHangController::class,'AddToCart']);
     Route::get('info-cart',[KhachHangController::class,'InfoCart']);
@@ -90,17 +73,63 @@ Route::prefix('khach-hang')->group(function () {
     Route::get('order-item/{id}', [KhachHangController::class,'store']);
     Route::get('order/{id}', [KhachHangController::class,'Order']);
 });
-Route::prefix('tin-tuc')->group(function () {
-    Route::get('', [TinTucController::class,'index']);
-    Route::get('{id}', [TinTucController::class,'show'])->where('id','[0-9]+');
-    Route::get('cap-nhat/{id}', [TinTucController::class,'edit']);
-    Route::put('cap-nhat/{id}', [TinTucController::class,'update']);
-    Route::get('them', [TinTucController::class,'create']);
-    Route::post('them', [TinTucController::class,'store']);
-    Route::delete('xoa/{id}', [TinTucController::class,'destroy']);
+
+//admin
+Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
+    Route::get('main',[MainController::class,'index'])->name('admin');
+
+    Route::prefix('user')->group(function(){
+        Route::get('create',[LoginController::class,'create']);
+        Route::post('create',[LoginController::class,'store']);
+        Route::get('logout',[LoginController::class,'logout']);
+    });
+
+    Route::prefix('slider')->group(function () {
+        Route::get('', [SliderController::class,'index']);
+        Route::get('cap-nhat/{id}', [SliderController::class,'edit']);
+        Route::put('cap-nhat/{id}', [SliderController::class,'update']);
+        Route::get('them', [SliderController::class,'create']);
+        Route::post('them', [SliderController::class,'store']);
+        Route::delete('xoa/{id}', [SliderController::class,'destroy']);
+    });
+
+    Route::prefix('banner')->group(function () {
+        Route::get('', [BannerController::class,'index']);
+        Route::get('cap-nhat/{id}', [BannerController::class,'edit']);
+        Route::put('cap-nhat/{id}', [BannerController::class,'update']);
+        Route::get('them', [BannerController::class,'create']);
+        Route::post('them', [BannerController::class,'store']);
+        Route::delete('xoa/{id}', [BannerController::class,'destroy']);
+    });
+
+    Route::prefix('san-pham')->group(function () {
+        Route::get('', [SanPhamController::class,'index']);
+        // Route::get('nu', [SanPhamController::class,'productWomen']);
+        // Route::get('nam', [SanPhamController::class,'productMen']);
+        // Route::get('viet-tien', [SanPhamController::class,'productViettien']);
+        // Route::get('pt2000', [SanPhamController::class,'productPT']);
+        // Route::get('yame', [SanPhamController::class,'productYaMe']);
+        // Route::get('blue-exchange', [SanPhamController::class,'productBlue']);
+        // Route::get('{chuoi}', [SanPhamController::class,'productDetail']);
+        Route::get('cap-nhat/{id}', [SanPhamController::class,'edit']);
+        Route::put('cap-nhat/{id}', [SanPhamController::class,'update']);
+        Route::get('them', [SanPhamController::class,'create']);
+        Route::post('them', [SanPhamController::class,'store']);
+        Route::delete('xoa/{id}', [SanPhamController::class,'destroy']);
+    });
+    Route::prefix('tin-tuc')->group(function () {
+        Route::get('', [TinTucController::class,'index']);
+        Route::get('cap-nhat/{id}', [TinTucController::class,'edit']);
+        Route::put('cap-nhat/{id}', [TinTucController::class,'update']);
+        Route::get('them', [TinTucController::class,'create']);
+        Route::post('them', [TinTucController::class,'store']);
+        Route::delete('xoa/{id}', [TinTucController::class,'destroy']);
+    });
+    Route::prefix('don-hang')->group(function () {
+        Route::get('', [DonHangController::class,'index']);
+        Route::get('cap-nhat/{id}', [DonHangController::class,'edit']);
+        Route::put('cap-nhat/{id}', [DonHangController::class,'update']);
+    });
 });
-Route::prefix('don-hang')->group(function () {
-    Route::get('', [DonHangController::class,'index']);
-    Route::get('cap-nhat/{id}', [DonHangController::class,'edit']);
-    Route::put('cap-nhat/{id}', [DonHangController::class,'update']);
-});
+
+

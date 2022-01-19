@@ -41,9 +41,9 @@
                                     <span class="btn btn-info btn-sm">No</span>
                                 @endif
                             </td>
-                            <td><a class="btn btn-outline-success" href="{{url('tin-tuc/cap-nhat/'.$tt->id)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+                            <td><a class="btn btn-outline-success" href="{{url('admin/tin-tuc/cap-nhat/'.$tt->id)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
                             <td>
-                                <form action="{{url('tin-tuc/xoa/'.$tt->id)}}" method="post">
+                                <form action="{{url('admin/tin-tuc/xoa/'.$tt->id)}}" method="post">
                                     @method('delete')
                                     @csrf
                                     <button type="submit" class="btn btn-outline-danger" onclick="return confirm('Bạn có muốn xóa không ?')">

@@ -67,7 +67,7 @@ class SliderController extends Controller
         $slider->trang_thai = isset($data['trang_thai']) ? $data['trang_thai'] : false;
         $n = $slider->save();
         if($n>0){
-            return redirect('slider');
+            return redirect('admin/slider');
         }else{
             return redirect()->back()->with('alert','Cập nhật không thành công');
         }
@@ -77,7 +77,7 @@ class SliderController extends Controller
         $slider = Slider::find($id);
         $n = $slider->delete();
         if($n>0){
-            return redirect('slider');
+            return redirect('admin/slider');
         }
     }
 }

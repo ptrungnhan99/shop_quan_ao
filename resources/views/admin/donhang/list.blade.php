@@ -51,7 +51,7 @@
                                     <span class="btn btn-danger btn-sm">Hủy</span>
                                 @endif
                             </td>
-                            <td><a class="btn btn-outline-success" href="{{url('don-hang/cap-nhat/'.$dh->id)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
+                            <td><a class="btn btn-outline-success" href="{{url('admin/don-hang/cap-nhat/'.$dh->id)}}"><i class="fa fa-edit" aria-hidden="true"></i></a></td>
                         </tr>
                         <?php $i++;?>
                         @endforeach

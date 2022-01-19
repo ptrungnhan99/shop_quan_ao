@@ -34,7 +34,7 @@ class DonHangController extends Controller
         $dh->tinh_trang = $data['tinh_trang'];
         $n = $dh->save();
         if($n>0){
-            return redirect('don-hang');
+            return redirect('admin/don-hang');
         }else{
             return redirect()->back()->with('alert','Cập nhật không thành công');
         }

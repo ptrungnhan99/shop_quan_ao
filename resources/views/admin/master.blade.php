@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard</title>
+    <title>Trang quản trị</title>
     @include('admin.head')
 
 </head>
@@ -63,7 +63,7 @@
         <!-- Main Sidebar Container -->
         <aside class="main-sidebar sidebar-dark-primary elevation-4">
             <!-- Brand Logo -->
-            <a href="index3.html" class="brand-link">
+            <a href="{{url('admin/main')}}" class="brand-link">
                 <img src="{{URL::asset('public/template/admin/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3"
                     style="opacity: .8">
                 <span class="brand-text font-weight-light">AdminLTE 3</span>
@@ -77,10 +77,12 @@
                         <img src="{{URL::asset('public/template/admin/dist/img/user2-160x160.jpg')}}" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Alexander Pierce</a>
+                        <a href="" class="d-block">{{Auth::user()->name}}</a>
                     </div>
                 </div>
-
+                <div class="user-panel mt-3 pb-3 mb-3 d-flex justify-content-center">
+                    <a href="{{url('admin/user/logout')}}" class="d-block">Logout</a>
+                </div>
                 <!-- Sidebar Menu -->
                 <nav class="mt-2">
                     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
@@ -88,8 +90,8 @@
                         <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
                         <li class="nav-item menu-open">
-                            <a href="{{url('admin/main')}}" class="nav-link active">
-                                <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <a href="{{url('admin/main')}}" class="nav-link">
+                                <i class=" nav-icon ion ion-stats-bars"></i>
                                 <p>
                                     Quản lý thống kê
                                 </p>
@@ -98,7 +100,7 @@
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
+                                <i class=" nav-icon ion ion-bag"></i>
                                 <p>
                                     Quản lý sản phẩm
                                     <i class="fas fa-angle-left right"></i>
@@ -106,13 +108,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('san-pham/them')}}" class="nav-link">
+                                    <a href="{{url('admin/san-pham/them')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm sản phẩm</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{url('san-pham')}}" class="nav-link">
+                                    <a href="{{url('admin/san-pham')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách sản phẩm</p>
                                     </a>
@@ -120,8 +122,9 @@
                             </ul>
                         </li>
                         <li class="nav-item">
-                            <a href="{{url('don-hang')}}" class="nav-link">
-                                <i class="nav-icon fas fa-columns"></i>
+                            <a href="{{url('admin/don-hang')}}" class="nav-link">
+                                {{-- <i class="nav-icon fas fa-columns"></i> --}}
+                                <i class=" nav-icon fas fa-shopping-cart"></i>
                                 <p>
                                     Quản lý đơn hàng
                                 </p>
@@ -137,13 +140,13 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="{{url('tin-tuc/them')}}" class="nav-link">
+                                    <a href="{{url('admin/tin-tuc/them')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Thêm tin tức</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="{{url('tin-tuc')}}" class="nav-link">
+                                    <a href="{{url('admin/tin-tuc')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Danh sách tin tức</p>
                                     </a>
@@ -152,23 +155,23 @@
                         </li>
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-edit"></i>
+                                <i class=" nav-icon fa fa-user-circle" aria-hidden="true"></i>
                                 <p>
-                                    Quản lý bán hàng
+                                    Quản lý User
                                     <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
-                                    <a href="pages/forms/general.html" class="nav-link">
+                                    <a href="{{url('admin/user/create')}}" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Thêm sản phẩm</p>
+                                        <p>Thêm user</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="pages/forms/advanced.html" class="nav-link">
+                                    <a href="" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Danh sách sản phẩm</p>
+                                        <p>Danh sách user</p>
                                     </a>
                                 </li>
                             </ul>
@@ -176,7 +179,7 @@
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
-                              <i class="nav-icon fas fa-book"></i>
+                                <i class=" nav-icon fa fa-cog" aria-hidden="true"></i>
                               <p>
                                Quản lý trang chủ
                                 <i class="right fas fa-angle-left"></i>
@@ -193,13 +196,13 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="display: none;">
                                   <li class="nav-item">
-                                    <a href="{{url('slider/them')}}" class="nav-link">
+                                    <a href="{{url('admin/slider/them')}}" class="nav-link">
                                       <i class="far fa-dot-circle nav-icon"></i>
                                       <p>Thêm slider</p>
                                     </a>
                                   </li>
                                   <li class="nav-item">
-                                    <a href="{{url('slider')}}" class="nav-link">
+                                    <a href="{{url('admin/slider')}}" class="nav-link">
                                       <i class="far fa-dot-circle nav-icon"></i>
                                       <p>Danh sách slider</p>
                                     </a>
@@ -216,13 +219,13 @@
                                 </a>
                                 <ul class="nav nav-treeview" style="display: none;">
                                   <li class="nav-item">
-                                    <a href="{{url('banner/them')}}" class="nav-link">
+                                    <a href="{{url('admin/banner/them')}}" class="nav-link">
                                       <i class="far fa-dot-circle nav-icon"></i>
                                       <p>Thêm banner</p>
                                     </a>
                                   </li>
                                   <li class="nav-item">
-                                    <a href="{{url('banner')}}" class="nav-link">
+                                    <a href="{{url('admin/banner')}}" class="nav-link">
                                       <i class="far fa-dot-circle nav-icon"></i>
                                       <p>Danh sách banner</p>
                                     </a>

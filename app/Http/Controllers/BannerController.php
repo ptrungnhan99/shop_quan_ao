@@ -65,7 +65,7 @@ class BannerController extends Controller
         $banner->trang_thai = isset($data['trang_thai'])? true : false;
         $n = $banner->save();
         if($n>0){
-            return redirect('banner');
+            return redirect('admin/banner');
         }else{
             return redirect()->back()->with('alert','Cập nhật không thành công');
         }
@@ -74,7 +74,7 @@ class BannerController extends Controller
         $banner = Banner::find($id);
         $n = $banner->delete();
         if($n>0){
-            return redirect('banner');
+            return redirect('admin/banner');
         }
     }
     public function text2url($str) {
