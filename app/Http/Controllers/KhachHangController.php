@@ -34,9 +34,6 @@ class KhachHangController extends Controller
         Cart::remove($id);
         return redirect()->back();
     }
-    // public function AddNewCustomer(){
-    //     return view('client.customers.add-customer');
-    // }
     public function store(Request $request, $id)
     {
 		// dd($id);
@@ -70,6 +67,28 @@ class KhachHangController extends Controller
           	return redirect("/");
         // dd($DonDatHang);
         Mail::to($DonDatHang[0]->email)->send(new SendMailDonHang($DonDatHang));
-        return view('client.customers.order-list',['DonDatHang'=>$DonDatHang]);
+        // return view('client.customers.order-list',['DonDatHang'=>$DonDatHang]);
+        return redirect("/");
     }
+    public function InforCustomer($id){
+        $kh = KhachHang::find($id);
+        return view('client.customers.infor-customer',[
+            'kh' => $kh
+        ]);
+    }
+    public function InforOrder($id){
+        $DonDatHang = DB::table('hoadon')
+        ->join('khachhang', 'khachhang.id', '=', 'hoadon.id_ma_kh')
+        ->join('ct_hoadon', 'hoadon.id', '=', 'ct_hoadon.id_sohd')
+        ->join('sanpham', 'sanpham.id', '=', 'ct_hoadon.ma_san_pham')
+        ->select('hoadon.id','hoadon.ngay_hoa_don','hoadon.id_ma_kh','hoadon.tong_tien','hoadon.tien_coc','hoadon.con_lai','hoadon.tinh_trang','khachhang.ho_kh','khachhang.ten_kh','khachhang.dia_chi','khachhang.dien_thoai','khachhang.email', 'ct_hoadon.so_luong', 'ct_hoadon.don_gia','sanpham.id as MaSP', 'sanpham.ten_sp','sanpham.hinh1')
+        ->where('hoadon.tinh_trang','<>',0)
+        ->where('khachhang.id',$id)
+        ->get();
+        // dd($DonDatHang);
+        return view('client.customers.infor-order',[
+            'DonDatHang' => $DonDatHang
+        ]);
+    }
+
 }

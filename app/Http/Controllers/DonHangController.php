@@ -15,6 +15,7 @@ class DonHangController extends Controller
         ->join('sanpham', 'sanpham.id', '=', 'ct_hoadon.ma_san_pham')
         ->select('hoadon.id','hoadon.ngay_hoa_don','hoadon.id_ma_kh','hoadon.tong_tien','hoadon.tien_coc','hoadon.con_lai','hoadon.tinh_trang','khachhang.ho_kh','khachhang.ten_kh','khachhang.dia_chi','khachhang.dien_thoai','khachhang.email', 'ct_hoadon.so_luong', 'ct_hoadon.don_gia','sanpham.id as MaSP', 'sanpham.ten_sp','sanpham.hinh1')
         ->where('hoadon.tinh_trang','<>',0)
+        ->orderBy('hoadon.created_at','DESC')
         ->get();
         if(count($DonDatHang)===0)
           return redirect("/");

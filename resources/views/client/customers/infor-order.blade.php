@@ -6,17 +6,32 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 @endsection
 @section('content')
+    <!-- breadcrumb -->
+    <div class="container">
+        <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
+            <a href="index.html" class="stext-109 cl8 hov-cl1 trans-04">
+                Home
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+
+            <a href="blog.html" class="stext-109 cl8 hov-cl1 trans-04">
+                Khách hàng
+                <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
+            </a>
+
+            <span class="stext-109 cl4">
+                Thông tin đơn hàng
+            </span>
+        </div>
+    </div>
 	<div class="container mt-5 mb-5">
 		<div class="row">
-            <div class="col-12">
-                <h1 class="text-center text-success">Thông tin khách hàng</h1>
-            </div>
             <div class="col-4">
                 <div class="list-group">
                     <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
 
                     </a>
-                    <a href="{{url('khach-hang/info-customer/'.Session::get('id_kh'))}}" class="list-group-item list-group-item-action">Thông tin khách hàng</a>
+                    <a href="{{url('khach-hang/infor-customer/'.Session::get('id_kh'))}}" class="list-group-item list-group-item-action">Thông tin khách hàng</a>
                     <a href="" class="list-group-item list-group-item-action">Thông tin đơn hàng</a>
                 </div>
             </div>
@@ -47,9 +62,18 @@
                           <td>{{ number_format($dh->don_gia) }}</td>
                           <td>{{ number_format($dh->so_luong *$dh->don_gia) }}</td>
                           <td>
-                            @if($dh->tinh_trang == 1)
-                            <span class="btn btn-block btn-secondary">Tiếp nhận</span>
-                            @endif
+                            @if($dh->tinh_trang === 1)
+                                    <span class="btn btn-secondary btn-sm">Tiếp nhận</span>
+                                @endif
+                                @if ($dh->tinh_trang === 2)
+                                    <span class="btn btn-primary btn-sm">Đang giao</span>
+                                @endif
+                                @if ($dh->tinh_trang === 3)
+                                    <span class="btn btn-success btn-sm">Đã giao</span>
+                                @endif
+                                @if($dh->tinh_trang === 4)
+                                    <span class="btn btn-danger btn-sm">Hủy</span>
+                                @endif
                           </td>
                         </tr>
                         <?php $i++;?>

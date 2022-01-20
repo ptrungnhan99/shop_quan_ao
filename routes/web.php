@@ -31,6 +31,8 @@ Route::prefix('/')->group(function () {
     Route::get('logout', [HomeController::class,'logout']);
     Route::get('register', [HomeController::class,'register']);
     Route::post('register', [HomeController::class,'postRegister']);
+    Route::get('contact', [HomeController::class,'contact']);
+    Route::post('contact', [HomeController::class,'postContact']);
 });
 
 // Route::get('admin/user/login',[LoginController::class,'index'])->name('login');
@@ -74,9 +76,10 @@ Route::prefix('khach-hang')->group(function () {
     Route::get('info-cart',[KhachHangController::class,'InfoCart']);
     Route::post('update-cart',[KhachHangController::class,'UpdateCart']);
     Route::get('delete-cart/{id}',[KhachHangController::class,'DeleteCart']);
-    // Route::get('order-item', [KhachHangController::class,'AddNewCustomer']);
     Route::get('order-item/{id}', [KhachHangController::class,'store']);
     Route::get('order/{id}', [KhachHangController::class,'Order']);
+    Route::get('infor-customer/{id}', [KhachHangController::class,'InforCustomer']);
+    Route::get('infor-order/{id}', [KhachHangController::class,'InforOrder']);
 });
 
 //admin

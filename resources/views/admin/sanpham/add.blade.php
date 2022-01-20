@@ -28,17 +28,7 @@
                             </small>
                         @endif
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="ma_loai">Loại sản phẩm</label>
-                        <input type="text" class="form-control" name="ma_loai" id="ma_loai" value="{{old('ma_loai')}}">
-                        @if (count($errors)>0)
-                            <small class="text-danger">
-                                @foreach ($errors->get('ma_loai') as $message )
-                                    {{$message}} <br>
-                                @endforeach
-                            </small>
-                        @endif
-                    </div> --}}
+
                     <div class="form-group">
                         <label for="ma_loai">Loại sản phẩm</label>
                         <select class="form-control" name="ma_loai" id="ma_loai">
@@ -59,17 +49,7 @@
                             </small>
                         @endif
                     </div>
-                    {{-- <div class="form-group">
-                        <label for="ma_thuong_hieu">Thương hiệu</label>
-                        <input type="text" class="form-control" name="ma_thuong_hieu" id="ma_thuong_hieu" value="{{old('ma_thuong_hieu')}}">
-                        @if (count($errors)>0)
-                            <small class="text-danger">
-                                @foreach ($errors->get('ma_thuong_hieu') as $message )
-                                    {{$message}} <br>
-                                @endforeach
-                            </small>
-                        @endif
-                    </div> --}}
+
                     <div class="form-group">
                         <label for="ma_thuong_hieu">Thương hiệu</label>
                         <select class="form-control" name="ma_thuong_hieu" id="ma_thuong_hieu">

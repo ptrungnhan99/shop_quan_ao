@@ -10,7 +10,7 @@
 
                 <div class="right-top-bar flex-w h-full">
                 @if(Session::has('ho_ten_kh'))
-                    <a href="{{url('khach-hang/info-customer/'.Session::get('id_kh'))}}" class="flex-c-m p-lr-10 trans-04">
+                    <a href="{{url('khach-hang/infor-customer/'.Session::get('id_kh'))}}" class="flex-c-m p-lr-10 trans-04">
                         {{-- {{Session::get('ho_ten_kh')}} --}}
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
                     </a>
@@ -18,7 +18,7 @@
                         Đăng xuất
                     </a>
                 @elseif (Cookie::has('ho_ten_kh'))
-                    <a href="{{url('khach-hang/info-customer/'.Cookie::get('id_kh'))}}" class="flex-c-m p-lr-10 trans-04">
+                    <a href="{{url('khach-hang/infor-customer/'.Cookie::get('id_kh'))}}" class="flex-c-m p-lr-10 trans-04">
                         {{-- {{Cookie::get('ho_ten_kh')}} --}}
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
                     </a>
@@ -77,16 +77,12 @@
                             </ul>
                         </li>
 
-                        <li class="label1" data-label1="hot">
-                            <a href="shoping-cart.html">Khuyến mãi</a>
-                        </li>
-
                         <li>
                             <a href="{{url('tin-tuc')}}">Tin tức</a>
                         </li>
 
                         <li>
-                            <a href="contact.html">Liên hệ</a>
+                            <a href="{{url('contact')}}">Liên hệ</a>
                         </li>
                     </ul>
                 </div>
@@ -199,15 +195,11 @@
             </li>
 
             <li>
-                <a href="shoping-cart.html" class="label1 rs1" data-label1="hot">Khuyến mãi</a>
-            </li>
-
-            <li>
                 <a href="{{url('tin-tuc')}}">Tin tức</a>
             </li>
 
             <li>
-                <a href="contact.html">Liên hệ</a>
+                <a href="{{url('contact')}}">Liên hệ</a>
             </li>
         </ul>
     </div>

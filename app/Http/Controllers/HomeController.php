@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreKhachHangPost;
 use App\Models\Banner;
 use App\Models\KhachHang;
+use App\Models\LienHe;
 use App\Models\LoaiSanPham;
 use App\Models\SanPham;
 use App\Models\Slider;
@@ -101,5 +102,36 @@ class HomeController extends Controller
         }
 
 
+    }
+    public function contact(){
+        return view('client.contact.contact');
+    }
+    public function postContact(Request $request){
+        $this->validate($request,[
+            'ho_ten' => 'required',
+            'dien_thoai' => 'required',
+            'email' => 'required',
+            'tieu_de' => 'required',
+            'noi_dung' => 'required'
+        ],[
+            'ho_ten.required' => 'Vui lòng nhập họ tên',
+            'dien_thoai.required' => 'Vui lòng nhập số điện thoại',
+            'email.required' => 'Vui lòng nhập email',
+            'tieu_de.required' => 'Vui lòng nhập tiêu đề',
+            'noi_dung.required' => 'Vui lòng nhập nội dung'
+        ]);
+        $data = $request->all();
+        $lienhe = new LienHe();
+        $lienhe->ho_ten = $data['ho_ten'];
+        $lienhe->dien_thoai = $data['dien_thoai'];
+        $lienhe->email = $data['dien_thoai'];
+        $lienhe->tieu_de = $data['tieu_de'];
+        $lienhe->noi_dung = $data['noi_dung'];
+        $n = $lienhe->save();
+        if($n>0){
+            return redirect()->back()->with('alert','Bạn đã gửi lời nhắn tới shop');
+        }else{
+            return redirect()->back()->with('alert','Gửi lời nhắn không thành công');
+        }
     }
 }
