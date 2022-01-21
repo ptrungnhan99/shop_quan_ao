@@ -13,6 +13,7 @@ use App\Models\TinTuc;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Session;
 
 class HomeController extends Controller
 {
@@ -133,5 +134,9 @@ class HomeController extends Controller
         }else{
             return redirect()->back()->with('alert','Gửi lời nhắn không thành công');
         }
+    }
+    public function changLanguage($language){
+        Session::put('locale',$language);
+        return redirect()->back();
     }
 }

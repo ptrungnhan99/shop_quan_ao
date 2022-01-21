@@ -15,7 +15,7 @@
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
                     </a>
                     <a href="{{url('logout')}}" class="flex-c-m p-lr-10 trans-04">
-                        Đăng xuất
+                        @lang('label.logout')
                     </a>
                 @elseif (Cookie::has('ho_ten_kh'))
                     <a href="{{url('khach-hang/infor-customer/'.Cookie::get('id_kh'))}}" class="flex-c-m p-lr-10 trans-04">
@@ -23,19 +23,19 @@
                         <i class="fa fa-user-circle" aria-hidden="true"></i>
                     </a>
                     <a href="{{url('logout')}}" class="flex-c-m p-lr-10 trans-04">
-                        Đăng xuất
+                        @lang('label.logout')
                     </a>
                 @else
                     <a href="{{url('login')}}" class="flex-c-m p-lr-10 trans-04">
-                        Đăng nhập
+                        @lang('label.login')
                     </a>
                 @endif
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                    <a href="{!! route('change-language', ['en']) !!}" class="flex-c-m trans-04 p-lr-25">
                         EN
                     </a>
 
-                    <a href="#" class="flex-c-m trans-04 p-lr-25">
+                    <a href="{!! route('change-language', ['vi']) !!}" class="flex-c-m trans-04 p-lr-25">
                         VI
                     </a>
                 </div>
@@ -54,21 +54,21 @@
                 <div class="menu-desktop">
                     <ul class="main-menu">
                         <li>
-                            <a href="{{url('/')}}">Trang chủ</a>
+                            <a href="{{url('/')}}">@lang('label.home')</a>
 
                         </li>
 
                         <li class="active-menu">
-                            <a href="#">Sản phẩm</a>
+                            <a href="#">@lang('label.products')</a>
                             <ul class="sub-menu">
-                                <li><a href="{{url('san-pham/nu')}}">Nữ</a></li>
-                                <li><a href="{{url('san-pham/nam')}}">Nam</a></li>
-                                <li><a href="home-03.html">Phụ kiện</a></li>
+                                <li><a href="{{url('san-pham/nu')}}">@lang('label.women')</a></li>
+                                <li><a href="{{url('san-pham/nam')}}">@lang('label.men')</a></li>
+                                <li><a href="home-03.html">@lang('label.accessories')</a></li>
                             </ul>
                         </li>
 
                         <li>
-                            <a href="product.html">Thương hiệu</a>
+                            <a href="product.html">@lang('label.brand')</a>
                             <ul class="sub-menu">
                                 <li><a href="{{url('san-pham/viet-tien')}}">Viettien</a></li>
                                 <li><a href="{{url('san-pham/pt2000')}}">PT2000</a></li>
@@ -78,11 +78,11 @@
                         </li>
 
                         <li>
-                            <a href="{{url('tin-tuc')}}">Tin tức</a>
+                            <a href="{{url('tin-tuc')}}">@lang('label.blog')</a>
                         </li>
 
                         <li>
-                            <a href="{{url('contact')}}">Liên hệ</a>
+                            <a href="{{url('contact')}}">@lang('label.contact')</a>
                         </li>
                     </ul>
                 </div>
@@ -153,12 +153,12 @@
                         My Account
                     </a>
 
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
+                    <a href="{!! route('change-language', ['en']) !!}" class="flex-c-m p-lr-10 trans-04">
                         EN
                     </a>
 
-                    <a href="#" class="flex-c-m p-lr-10 trans-04">
-                        USD
+                    <a href="{!! route('change-language', ['vi']) !!}" class="flex-c-m p-lr-10 trans-04">
+                        vI
                     </a>
                 </div>
             </li>
@@ -166,15 +166,15 @@
 
         <ul class="main-menu-m">
             <li>
-                <a href="{{url('/')}}">Trang chủ</a>
+                <a href="{{url('/')}}">@lang('label.home')</a>
             </li>
 
             <li>
-                <a href="product.html">Sản phẩm</a>
+                <a href="product.html">@lang('label.products')</a>
                 <ul class="sub-menu-m">
-                    <li><a href="{{url('san-pham/nu')}}">Nữ</a></li>
-                    <li><a href="{{url('san-pham/nam')}}">Nam</a></li>
-                    <li><a href="home-03.html">Phụ kiện</a></li>
+                    <li><a href="{{url('san-pham/nu')}}">@lang('label.women')</a></li>
+                    <li><a href="{{url('san-pham/nam')}}">@lang('label.men')</a></li>
+                    <li><a href="home-03.html">@lang('label.accessories')</a></li>
                 </ul>
                 <span class="arrow-main-menu-m">
                     <i class="fa fa-angle-right" aria-hidden="true"></i>
@@ -182,7 +182,7 @@
             </li>
 
             <li>
-                <a href="product.html">Thương hiệu</a>
+                <a href="product.html">@lang('label.brand')</a>
                 <ul class="sub-menu-m">
                     <li><a href="{{url('san-pham/viet-tien')}}">Viettien</a></li>
                     <li><a href="{{url('san-pham/pt2000')}}">PT2000</a></li>
@@ -195,11 +195,11 @@
             </li>
 
             <li>
-                <a href="{{url('tin-tuc')}}">Tin tức</a>
+                <a href="{{url('tin-tuc')}}">@lang('label.blog')</a>
             </li>
 
             <li>
-                <a href="{{url('contact')}}">Liên hệ</a>
+                <a href="{{url('contact')}}">@lang('label.contact')</a>
             </li>
         </ul>
     </div>

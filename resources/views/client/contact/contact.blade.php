@@ -6,7 +6,7 @@
     <!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{URL::asset('public/template/client/images/bg-01.jpg')}});">
 		<h2 class="ltext-105 cl0 txt-center">
-			Liên hệ
+			@lang('label.contact')
 		</h2>
 	</section>
 
@@ -24,11 +24,11 @@
                         @endif
                         @csrf
 						<h4 class="mtext-105 cl2 txt-center p-b-30">
-							Liên hệ với chúng tôi
+							@lang('label.sendMessage')
 						</h4>
 
 						<div class="form-group">
-						  <label for="name">Tên của bạn</label>
+						  <label for="name">@lang('label.fullname')</label>
 						  <input type="text" name="ho_ten" id="name" class="form-control" >
                             @if (count($errors)>0)
                             <small class="text-danger">
@@ -40,7 +40,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="dien_thoai">Điện thoại</label>
+							<label for="dien_thoai">@lang('label.phone')</label>
 							<input type="text" name="dien_thoai" id="dien_thoai" class="form-control">
                             @if (count($errors)>0)
                             <small class="text-danger">
@@ -52,7 +52,7 @@
 						</div>
 
 						<div class="form-group">
-							<label for="email">Email</label>
+							<label for="email">@lang('label.email')</label>
 							<input type="email" name="email" id="email" class="form-control" >
                             @if (count($errors)>0)
                             <small class="text-danger">
@@ -63,7 +63,7 @@
                             @endif
 						</div>
 						<div class="form-group">
-							<label for="tieu_de">Tiêu đề</label>
+							<label for="tieu_de">@lang('label.title')</label>
 							<input type="text" name="tieu_de" id="tieu_de" class="form-control">
                             @if (count($errors)>0)
                             <small class="text-danger">
@@ -75,7 +75,7 @@
 						</div>
 
 						<div class="form-group">
-                            <label for="noi_dung">Nội dung</label>
+                            <label for="noi_dung">@lang('label.message')</label>
                             <textarea  class="form-control" name="noi_dung" id="noi_dung" rows="5"></textarea>
                             @if (count($errors)>0)
                             <small class="text-danger">
@@ -86,7 +86,7 @@
                             @endif
                         </div>
 						<button id="btnSend" type="submit" class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-							Gửi
+							@lang('label.submit')
 						</button>
 					</form>
 				</div>
@@ -99,7 +99,7 @@
 
 						<div class="size-212 p-t-2">
 							<span class="mtext-110 cl2">
-								Địa chỉ
+								@lang('label.address')
 							</span>
 
 							<p class="stext-115 cl6 size-213 p-t-18">
@@ -115,7 +115,7 @@
 
 						<div class="size-212 p-t-2">
 							<span class="mtext-110 cl2">
-								Đường dây nóng
+								@lang('label.talk')
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">
@@ -131,7 +131,7 @@
 
 						<div class="size-212 p-t-2">
 							<span class="mtext-110 cl2">
-								Hỗ trợ bán hàng
+								@lang('label.salesupport')
 							</span>
 
 							<p class="stext-115 cl1 size-213 p-t-18">

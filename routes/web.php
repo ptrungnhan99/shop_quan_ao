@@ -24,25 +24,48 @@ use Illuminate\Support\Facades\Route;
 |
 */
 //client
-Route::prefix('/')->group(function () {
-    Route::get('',[HomeController::class,'index']);
-    Route::get('login', [HomeController::class,'login']);
-    Route::post('login', [HomeController::class,'postLogin']);
-    Route::get('logout', [HomeController::class,'logout']);
-    Route::get('register', [HomeController::class,'register']);
-    Route::post('register', [HomeController::class,'postRegister']);
-    Route::get('contact', [HomeController::class,'contact']);
-    Route::post('contact', [HomeController::class,'postContact']);
+Route::group(['middleware' => 'locale'], function() {
+    Route::get('change-language/{language}',[HomeController::class,'changLanguage'])->name('change-language');
+
+    Route::prefix('san-pham')->group(function () {
+        Route::get('nu', [SanPhamController::class,'productWomen']);
+        Route::get('nam', [SanPhamController::class,'productMen']);
+        Route::get('viet-tien', [SanPhamController::class,'productViettien']);
+        Route::get('pt2000', [SanPhamController::class,'productPT']);
+        Route::get('yame', [SanPhamController::class,'productYaMe']);
+        Route::get('blue-exchange', [SanPhamController::class,'productBlue']);
+        Route::get('{chuoi}', [SanPhamController::class,'productDetail']);
+    });
+
+    Route::prefix('tin-tuc')->group(function () {
+        Route::get('', [TinTucController::class,'blog']);
+        Route::get('{string}', [TinTucController::class,'blogDetail']);
+    });
+
+    Route::prefix('khach-hang')->group(function () {
+        Route::post('add-to-cart/{id}', [KhachHangController::class,'AddToCart']);
+        Route::get('info-cart',[KhachHangController::class,'InfoCart']);
+        Route::post('update-cart',[KhachHangController::class,'UpdateCart']);
+        Route::get('delete-cart/{id}',[KhachHangController::class,'DeleteCart']);
+        Route::get('order-item/{id}', [KhachHangController::class,'store']);
+        Route::get('order/{id}', [KhachHangController::class,'Order']);
+        Route::get('infor-customer/{id}', [KhachHangController::class,'InforCustomer']);
+        Route::get('infor-order/{id}', [KhachHangController::class,'InforOrder']);
+    });
+
+    Route::prefix('/')->group(function () {
+        Route::get('',[HomeController::class,'index']);
+        Route::get('login', [HomeController::class,'login']);
+        Route::post('login', [HomeController::class,'postLogin']);
+        Route::get('logout', [HomeController::class,'logout']);
+        Route::get('register', [HomeController::class,'register']);
+        Route::post('register', [HomeController::class,'postRegister']);
+        Route::get('contact', [HomeController::class,'contact']);
+        Route::post('contact', [HomeController::class,'postContact']);
+    });
 });
 
-// Route::get('admin/user/login',[LoginController::class,'index'])->name('login');
 
-// Route::post('admin/user/login',[LoginController::class,'store']);
-
-// Route::middleware(['auth'])->group(function () {
-//     Route::get('admin/main',[MainController::class,'index'])->name('admin');
-//     // Route::get('san-pham/them', [SanPhamController::class,'create']);
-// });
 
 Route::prefix('user')->group(function(){
     Route::get('login',[LoginController::class,'login'])->name('user/login');
@@ -50,37 +73,7 @@ Route::prefix('user')->group(function(){
 
 });
 
-Route::prefix('san-pham')->group(function () {
-    // Route::get('', [SanPhamController::class,'index']);
-    Route::get('nu', [SanPhamController::class,'productWomen']);
-    Route::get('nam', [SanPhamController::class,'productMen']);
-    Route::get('viet-tien', [SanPhamController::class,'productViettien']);
-    Route::get('pt2000', [SanPhamController::class,'productPT']);
-    Route::get('yame', [SanPhamController::class,'productYaMe']);
-    Route::get('blue-exchange', [SanPhamController::class,'productBlue']);
-    Route::get('{chuoi}', [SanPhamController::class,'productDetail']);
-    // Route::get('cap-nhat/{id}', [SanPhamController::class,'edit']);
-    // Route::put('cap-nhat/{id}', [SanPhamController::class,'update']);
-    // Route::get('them', [SanPhamController::class,'create']);
-    // Route::post('them', [SanPhamController::class,'store']);
-    // Route::delete('xoa/{id}', [SanPhamController::class,'destroy']);
-});
 
-Route::prefix('tin-tuc')->group(function () {
-    Route::get('', [TinTucController::class,'blog']);
-    Route::get('{string}', [TinTucController::class,'blogDetail']);
-});
-
-Route::prefix('khach-hang')->group(function () {
-    Route::post('add-to-cart/{id}', [KhachHangController::class,'AddToCart']);
-    Route::get('info-cart',[KhachHangController::class,'InfoCart']);
-    Route::post('update-cart',[KhachHangController::class,'UpdateCart']);
-    Route::get('delete-cart/{id}',[KhachHangController::class,'DeleteCart']);
-    Route::get('order-item/{id}', [KhachHangController::class,'store']);
-    Route::get('order/{id}', [KhachHangController::class,'Order']);
-    Route::get('infor-customer/{id}', [KhachHangController::class,'InforCustomer']);
-    Route::get('infor-order/{id}', [KhachHangController::class,'InforOrder']);
-});
 
 //admin
 Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
@@ -112,13 +105,6 @@ Route::group(['prefix'=>'admin','middleware'=>'auth'],function(){
 
     Route::prefix('san-pham')->group(function () {
         Route::get('', [SanPhamController::class,'index']);
-        // Route::get('nu', [SanPhamController::class,'productWomen']);
-        // Route::get('nam', [SanPhamController::class,'productMen']);
-        // Route::get('viet-tien', [SanPhamController::class,'productViettien']);
-        // Route::get('pt2000', [SanPhamController::class,'productPT']);
-        // Route::get('yame', [SanPhamController::class,'productYaMe']);
-        // Route::get('blue-exchange', [SanPhamController::class,'productBlue']);
-        // Route::get('{chuoi}', [SanPhamController::class,'productDetail']);
         Route::get('cap-nhat/{id}', [SanPhamController::class,'edit']);
         Route::put('cap-nhat/{id}', [SanPhamController::class,'update']);
         Route::get('them', [SanPhamController::class,'create']);

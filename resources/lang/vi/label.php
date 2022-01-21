@@ -1,0 +1,31 @@
+<?php
+    return [
+        'home' => 'Trang chủ',
+        'products' => 'Sản phẩm',
+        'brand' => 'Nhãn hàng',
+        'blog' => 'Tin tức',
+        'contact' => 'Liên hệ',
+        'login' => 'Đăng nhập',
+        'logout' => 'Đăng xuất',
+        'women' => 'Nữ',
+        'men' => 'Nam',
+        'womenfashion' => "Thời trang nữ",
+        'menfashion' => "Thời trang nam",
+        'accessories' => 'Phụ kiện',
+        'categories' => 'DANH MỤC',
+        'help' => 'HỖ TRỢ',
+        'getintouch' => 'LIÊN LẠC',
+        'newsletter' => 'BẢN TIN',
+        'subscribe' => 'ĐĂNG KÝ',
+        'sendMessage' => 'Liên hệ với chúng tôi',
+        'address' => 'Địa chỉ',
+        'talk' => 'Đường dây nóng',
+        'salesupport' => 'Hỗ trợ bán hàng',
+        'fullname' => 'Họ tên',
+        'phone' => 'Điện thoại',
+        'email' => 'Email',
+        'title' => 'Tiêu đề',
+        'message' => 'Nội dung',
+        'submit' => 'GỬI'
+    ];
+?>

@@ -76,7 +76,7 @@
 		<div class="container">
 			<div class="p-b-32">
 				<h3 class="ltext-105 cl5 txt-center respon1">
-					THỜI TRANG NỮ
+					@lang('label.womenfashion')
 				</h3>
 			</div>
 
@@ -139,7 +139,7 @@
 		<div class="container">
 			<div class="p-b-32">
 				<h3 class="ltext-105 cl5 txt-center respon1">
-					THỜI TRANG NAM
+					@lang('label.menfashion')
 				</h3>
 			</div>
 
@@ -202,7 +202,7 @@
 		<div class="container">
 			<div class="p-b-66">
 				<h3 class="ltext-105 cl5 txt-center respon1">
-					TIN TỨC
+					@lang('label.blog')
 				</h3>
 			</div>
 
